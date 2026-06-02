@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Legatia — agentic infrastructure</title>
+<meta name="description" content="Legatia — builder of agentic infrastructure. Selected projects across 0x01, Hedgents, Tai, Registrai and more." />
+<meta name="color-scheme" content="light dark" />
+<meta property="og:title" content="Legatia — agentic infrastructure" />
+<meta property="og:description" content="Selected projects across agentic mesh networks, institutional DeFi, decentralized streaming and permissionless oracles." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://legatia.github.io" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fafaf9;
+    --bg-soft: #f3f3f1;
+    --fg: #1a1a18;
+    --muted: #6b6b66;
+    --faint: #9a9a93;
+    --line: #e4e4e0;
+    --accent: #b4531f;
+    --accent-soft: rgba(180, 83, 31, 0.08);
+    --card: #ffffff;
+    --max: 920px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e0e0d;
+      --bg-soft: #161614;
+      --fg: #ededea;
+      --muted: #9a9a92;
+      --faint: #6a6a62;
+      --line: #26261f;
+      --accent: #e08a4f;
+      --accent-soft: rgba(224, 138, 79, 0.10);
+      --card: #161614;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+  code, .mono { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace; }
+
+  /* ---- header ---- */
+  header { padding: 96px 0 56px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-size: clamp(40px, 7vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    margin: 0 0 20px;
+  }
+  .lede {
+    font-size: clamp(17px, 2.4vw, 21px);
+    color: var(--muted);
+    max-width: 36ch;
+    margin: 0 0 30px;
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    text-decoration: none;
+    color: var(--fg);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 16px;
+    transition: border-color .18s ease, color .18s ease, background .18s ease;
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+  /* ---- section ---- */
+  section { padding: 30px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+  .sec-head h2 {
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    font-weight: 650;
+    margin: 0;
+  }
+  .sec-head .org {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--faint);
+  }
+  .sec-desc { color: var(--muted); margin: 0 0 22px; font-size: 15.5px; max-width: 60ch; }
+
+  /* ---- project grid ---- */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -16px rgba(0,0,0,.35);
+  }
+  .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+  .card-name { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 15px; }
+  .card-meta { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--faint); flex-shrink: 0; }
+  .lang { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  .star::before { content: "★"; margin-right: 3px; }
+  .card-desc { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; }
+
+  /* ---- footer ---- */
+  footer { padding: 56px 0 80px; border-top: 1px solid var(--line); color: var(--faint); font-size: 13.5px; }
+  footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+  .fmono { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">$ whoami</p>
+      <h1>Legatia</h1>
+      <p class="lede">Builder of agentic infrastructure — mesh networks, autonomous DeFi, and on-chain coordination for machines.</p>
+      <nav class="links">
+        <a href="https://github.com/Legatia">GitHub</a>
+        <a href="https://github.com/0x01-a2a">0x01</a>
+        <a href="https://github.com/Hedgents">Hedgents</a>
+        <a href="https://github.com/TaiStream">Tai</a>
+        <a href="https://github.com/registrai-multichain">Registrai</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 0x01 -->
+      <section>
+        <div class="sec-head">
+          <h2>0x01</h2>
+          <span class="org">github.com/0x01-a2a</span>
+        </div>
+        <p class="sec-desc">An autonomous agentic mesh network — turning any device into a node, with its own settlement layer and proof-of-experience.</p>
+        <div class="grid">
+          <a class="card" href="https://github.com/0x01-a2a/node">
+            <div class="card-top"><span class="card-name">node</span><span class="card-meta"><span class="lang"><span class="dot"></span>Rust</span><span class="star">4</span></span></div>
+            <p class="card-desc">The zerox1 node — core of the mesh.</p>
+          </a>
+          <a class="card" href="https://github.com/0x01-a2a/mobile">
+            <div class="card-top"><span class="card-name">mobile</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span><span class="star">3</span></span></div>
+            <p class="card-desc">Mobile control panel — turn an Android phone into a node.</p>
+          </a>
+          <a class="card" href="https://github.com/0x01-a2a/settlement">
+            <div class="card-top"><span class="card-name">settlement</span><span class="card-meta"><span class="lang"><span class="dot"></span>Solidity</span></span></div>
+            <p class="card-desc">Economy layer for multichain &amp; fiat access.</p>
+          </a>
+          <a class="card" href="https://github.com/0x01-a2a/zk-pox">
+            <div class="card-top"><span class="card-name">zk-pox</span><span class="card-meta"><span class="lang"><span class="dot"></span>Rust</span></span></div>
+            <p class="card-desc">Zero-Knowledge Proof-of-Experience protocol.</p>
+          </a>
+          <a class="card" href="https://github.com/0x01-a2a/explorer">
+            <div class="card-top"><span class="card-name">explorer</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">Real-time mesh network visualization dashboard.</p>
+          </a>
+          <a class="card" href="https://github.com/0x01-a2a/zeroclaw">
+            <div class="card-top"><span class="card-name">zeroclaw</span><span class="card-meta"><span class="lang"><span class="dot"></span>Rust</span><span class="star">1</span></span></div>
+            <p class="card-desc">Fast, small, fully autonomous AI assistant infra — deploy anywhere.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Hedgents -->
+      <section>
+        <div class="sec-head">
+          <h2>Hedgents</h2>
+          <span class="org">github.com/Hedgents</span>
+        </div>
+        <p class="sec-desc">Institutional DeFi on Solana — role-isolated autonomous agents managing real treasury capital over a peer-to-peer mesh.</p>
+        <div class="grid">
+          <a class="card" href="https://github.com/Hedgents/fleet">
+            <div class="card-top"><span class="card-name">fleet</span><span class="card-meta"><span class="lang"><span class="dot"></span>Rust</span><span class="star">1</span></span></div>
+            <p class="card-desc">Five role-isolated agents managing treasury capital.</p>
+          </a>
+          <a class="card" href="https://github.com/Hedgents/p2p_architecture">
+            <div class="card-top"><span class="card-name">p2p_architecture</span><span class="card-meta"><span class="lang"><span class="dot"></span>Rust</span></span></div>
+            <p class="card-desc">Peer-to-peer mesh transport for autonomous DeFi agents.</p>
+          </a>
+          <a class="card" href="https://github.com/Hedgents/frontend">
+            <div class="card-top"><span class="card-name">frontend</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">Local operator dashboard — live mesh feed + AUM/PnL.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Tai -->
+      <section>
+        <div class="sec-head">
+          <h2>Tai</h2>
+          <span class="org">github.com/TaiStream</span>
+        </div>
+        <p class="sec-desc">Decentralized streaming on Sui — tokenized infrastructure, a live platform, and a native agent-identity registry.</p>
+        <div class="grid">
+          <a class="card" href="https://github.com/TaiStream/Tai-Launchpad">
+            <div class="card-top"><span class="card-name">Tai-Launchpad</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span><span class="star">1</span></span></div>
+            <p class="card-desc">Tokenized agentic infrastructure — asset, treasury &amp; capability layer.</p>
+          </a>
+          <a class="card" href="https://github.com/TaiStream/SAI">
+            <div class="card-top"><span class="card-name">SAI</span><span class="card-meta"><span class="lang"><span class="dot"></span>Move</span></span></div>
+            <p class="card-desc">Agent identity &amp; reputation registry — Sui-native ERC-8004.</p>
+          </a>
+          <a class="card" href="https://github.com/TaiStream/Tai-Live">
+            <div class="card-top"><span class="card-name">Tai-Live</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">The main live-stream platform.</p>
+          </a>
+          <a class="card" href="https://github.com/TaiStream/Tai-SDK">
+            <div class="card-top"><span class="card-name">Tai-SDK</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">SDK for video infrastructure.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Registrai -->
+      <section>
+        <div class="sec-head">
+          <h2>Registrai</h2>
+          <span class="org">github.com/registrai-multichain</span>
+        </div>
+        <p class="sec-desc">Permissionless bonded oracles and prediction markets — fork-and-ship infrastructure for any app.</p>
+        <div class="grid">
+          <a class="card" href="https://github.com/registrai-multichain/oracle-primitives">
+            <div class="card-top"><span class="card-name">oracle-primitives</span><span class="card-meta"><span class="lang"><span class="dot"></span>Solidity</span></span></div>
+            <p class="card-desc">Bonded oracle agents + verifiable rule-bytecode aggregation.</p>
+          </a>
+          <a class="card" href="https://github.com/registrai-multichain/contracts">
+            <div class="card-top"><span class="card-name">contracts</span><span class="card-meta"><span class="lang"><span class="dot"></span>Solidity</span></span></div>
+            <p class="card-desc">Permissionless oracle + prediction-market contracts.</p>
+          </a>
+          <a class="card" href="https://github.com/registrai-multichain/agent-sdk">
+            <div class="card-top"><span class="card-name">agent-sdk</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">Runtime-agnostic SDK for writing oracle agents.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Independent -->
+      <section>
+        <div class="sec-head">
+          <h2>Independent projects</h2>
+          <span class="org">github.com/Legatia</span>
+        </div>
+        <p class="sec-desc">Selected personal work across payments, DeFi, agentic commerce and on-chain coordination.</p>
+        <div class="grid">
+          <a class="card" href="https://github.com/Legatia/OuroC">
+            <div class="card-top"><span class="card-name">OuroC</span><span class="card-meta"><span class="lang"><span class="dot"></span>Motoko</span><span class="star">2</span></span></div>
+            <p class="card-desc">Fully on-chain, compliance-aligned subscriptions for Solana.</p>
+          </a>
+          <a class="card" href="https://github.com/Legatia/MesosLocal">
+            <div class="card-top"><span class="card-name">MesosLocal</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">USDC-backed cross-border B2B settlements.</p>
+          </a>
+          <a class="card" href="https://github.com/Legatia/OtusFX">
+            <div class="card-top"><span class="card-name">OtusFX</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">On-chain FX trading engine.</p>
+          </a>
+          <a class="card" href="https://github.com/Legatia/Ouro">
+            <div class="card-top"><span class="card-name">Ouro</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">Agentic ecommerce — humans can only watch.</p>
+          </a>
+          <a class="card" href="https://github.com/Legatia/Siphon">
+            <div class="card-top"><span class="card-name">Siphon</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">Catch, train, and trade agents.</p>
+          </a>
+          <a class="card" href="https://github.com/Legatia/Bastion">
+            <div class="card-top"><span class="card-name">Bastion</span><span class="card-meta"><span class="lang"><span class="dot"></span>TypeScript</span></span></div>
+            <p class="card-desc">Safeguard your agentic activity.</p>
+          </a>
+          <a class="card" href="https://github.com/Legatia/Voce">
+            <div class="card-top"><span class="card-name">Voce</span><span class="card-meta"><span class="lang"><span class="dot"></span>Move</span></span></div>
+            <p class="card-desc">No gambles — express your real belief.</p>
+          </a>
+          <a class="card" href="https://github.com/Legatia/Wiki3">
+            <div class="card-top"><span class="card-name">Wiki3</span><span class="card-meta"><span class="lang"><span class="dot"></span>Web</span></span></div>
+            <p class="card-desc">A Wikipedia for blockchains, with a live technical dashboard.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p class="fmono">Legatia · building the agentic economy</p>
+      <p>More on <a href="https://github.com/Legatia">GitHub</a> — across <a href="https://github.com/0x01-a2a">0x01</a>, <a href="https://github.com/Hedgents">Hedgents</a>, <a href="https://github.com/TaiStream">Tai</a>, <a href="https://github.com/registrai-multichain">Registrai</a>, <a href="https://github.com/InfinityTeamPL">InfinityTeam</a> and more.</p>
+    </footer>
+  </div>
+</body>
+</html>
